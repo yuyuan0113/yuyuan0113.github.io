@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>課堂作業08</title>
+	<style>
+		h4 {
+			color: red;
+		}
+		label {
+			color: blue;
+		}
+		input {
+			color: brown;
+		}
+		div {
+			color: blue;
+			margin: 5px;
+		}
+		td {
+			vertical-align: middle;
+			border-color: dodgerblue;
+			border-style:solid;
+		}
+		td:nth-child(1){
+			color: purple;
+		}
+		td:nth-child(2){
+			color: red;
+		}
+	</style>
+
+</head>
+<body>
+<form id ="form01">
+	<label>姓名：</label>
+	<input type="text" name="name01" value="林博昱"><br>
+	<label>收件地址：</label>
+	<input type="text" name="address01" value=新北市中和區連城路469巷7弄29號><br>
+	<label>電話：</label>
+	<input type="tel" name="tel01" value="0978287738"><br>
+	<label>電子郵件：</label>
+	<input type="email" name="email01" value="evoct9a2004@gmail.com"><br>
+	<label>指定送貨日期：</label>
+	<input type="date" name="date01"><br>
+	<label>水果種類：（四選一）</label><br>
+	<input type="radio" name="fruit" id="fruit01" value="三地門阿賢ㄟ土芒果(5台斤)">三地門阿賢ㄟ土芒果(5台斤) 339元<br>
+	<input type="radio" name="fruit" id="fruit02" value="信義鄉香姐新鮮青梅(20台斤)">信義鄉香姐新鮮青梅(20台斤) 830元<br>
+	<input type="radio" name="fruit" id="fruit03" value="冠軍特選夏雪芒果(大果)(4.2台斤)">冠軍特選夏雪芒果(大果)(4.2台斤) 720元<br>
+	<input type="radio" name="fruit" id="fruit04" value="爆汁巨鑽蓮霧(大果)(3台斤)">爆汁巨鑽蓮霧(大果)(3台斤) 1690元<br>
+</form>
+<br>
+<button onclick="shoppingInfo()"><h4>結帳</h4></button>
+<div id="demo"></div>
+<script>
+	function shoppingInfo() {
+		const x =document.getElementById("form01");
+		var item = " ";
+		var price = 0;
+		var text = "<h4>您的購物資訊如下：</h4>";
+		text += "<table>";
+		for (i = 0; i < 5; i++){
+			text += "<tr>"
+			switch (i)  {
+				case 0:
+					item = "姓名：";
+					break;
+				case 1:
+					item = "收件地址：";
+					break;
+				case 2:
+					item = "電話：";
+					break;
+				case 3:
+					item = "電子郵件：";
+					break;
+				case 4:
+					item = "指定送貨日期：";
+					break;
+			}
+			text += "<td>" + item + "</td>";
+			text += "<td>" + x.elements[i].value + "</td>";
+			text += "</tr>";
+		}
+		for (i =5; i<= 8; i++){
+			if (x.elements[i].checked == true){
+				switch (i) {
+					case 5:
+						price = 339;
+						break;
+					case 6:
+						price = 830;
+						break;
+					case 7:
+						price = 720;
+						break;
+					case 8:
+						price = 1690;
+						break;
+				}
+				text += "<tr>";
+				text += "<td>" + "水果種類: " + "</td>";
+				text += "<td>" + x.elements[i].value + "</td>";
+				text += "</tr>";
+				text += "<tr>";
+				text += "<td>" + "價格合計: " + "</td>";
+				text += "<td>" + price + "元</td>";
+				text += "</tr>";
+			}
+		}
+		text += "</table>";
+		document.getElementById("demo").innerHTML = text;
+	}
+
+</script>
+</body>
+</html>
